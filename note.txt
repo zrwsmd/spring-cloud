@@ -1,0 +1,23 @@
+一.端点与配置文件的映射规则
+1./{application}/{profile}[/{label}]
+2./{application}-{profile}.yml
+3./{label}/{application}-{profile}.yml
+4./{application}-{profile}.properties
+5./{label}/{application}-{profile}.properties
+其中application表示微服务的名字(spring-cloud-zrw),{label}对应Git仓库的分支，默认是master
+二.
+1.http://localhost:9999/spring-cloud-zrw/dev
+2.http://localhost:9999/spring-cloud-zrw-dev.properties
+显示profile: dev-1.0
+3.http://localhost:9999/spring-cloud-zrw-test.properties
+显示profile: test-1.0
+4.http://localhost:9999/spring-cloud-zrw-production.properties
+显示profile: production-1.0
+4.如果访问一个不存在的properties，比如http://localhost:9999/spring-cloud-zrw-aa.properties
+显示profile: default-1.0
+三。在Git仓库创建一个分支叫version2
+1.http://localhost:9999/version2/spring-cloud-zrw-dev.properties
+显示profile: dev-2.0，其他(test和production)同理
+四.加密解密
+1.keytool  -genkeypair  -alias  zrw  -keysize 1024 -keyalg RSA  -dname "CN=Web Server,OU=unit,O=Organization,L=city,S=State,C=US"  -keypass  903030  -keystore server.jks  -storepass 123456
+2.keytool -genkeypair -alias zrw -keypass 903030   -keysize 1024 -validity 365 -keystore server.jks -storepass 123456 -dname "CN=*.home, OU=, O=, L=, ST=, C="

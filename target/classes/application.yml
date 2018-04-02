@@ -1,0 +1,21 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: config-server
+  cloud: 
+    config:
+      server:
+        git:
+          uri: https://github.com/zrwsmd/spring-cloud-config
+          username: zrwsmd
+          password: 9030zrwy
+---
+#keytool  -genkeypair  -alias  zrw  -keyalg RSA  -dname "CN=Web Server,OU=unit,O=Organization,L=city,S=State,C=US"  -keypass  903030  -keystore server.jks  -storepass 123456
+encrypt: 
+  key-store:
+   location: classpath:/server.jks 
+   password: 123456    #storepass
+   alias: zrw          #alias 
+   secret: 903030       #keypass
+          
