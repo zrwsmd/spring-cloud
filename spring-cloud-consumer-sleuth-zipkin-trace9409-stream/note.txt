@@ -1,0 +1,4 @@
+1.复制spring-cloud-provider-sleuth-zipkin-trace9410-stream项目而来，
+通过请求spring-cloud-provider-sleuth-zipkin-trace9410-stream的一个路径，
+实现数据链路(请求的多个服务之间的执行顺序，即从哪个服务到哪个服务再到哪个服务)的实现
+                           

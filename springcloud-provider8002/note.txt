@@ -1,0 +1,10 @@
+1.为了进行安全认证，首先导入spring-boot-starter-security依赖，然后在applcation.yml中添加
+security:
+  basic:
+    enabled: true  #启用springsecurity的配置项
+  user:
+    name: zrw
+    password: 123456
+    role:
+    - Admin
+2.这个项目8002没有进行spring security的安全认证

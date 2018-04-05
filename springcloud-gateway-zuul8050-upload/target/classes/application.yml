@@ -1,0 +1,43 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: gateway-zuul-file-upload 
+  http:
+    multipart:
+      max-file-size: 2000Mb
+      max-request-size: 2500Mb
+---
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka
+  instance:
+    prefer-ip-address: true
+---      
+zuul:
+  
+  routes:
+    application:
+      path: /zrw/**
+      serviceId: provider  #对应8000的application name
+      sensitive-headers: Cookie,Set-Cookie  #默认是Cookie,Set-Cookie 
+
+---
+management:
+  security:
+    enabled: false
+---
+hystrix:
+ command:
+   default:
+    execution:
+     isolation:
+      thread:
+       timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+    
+  

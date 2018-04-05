@@ -1,0 +1,3 @@
+启动地址:http://localhost:8030/hystrix(或者http://localhost:8030/hystrix.stream)，
+在URL输入localhost:9002/hystrix.stream，
+Title随便输入，点击Monitor stream按钮即可测试

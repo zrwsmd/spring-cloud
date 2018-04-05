@@ -1,0 +1,44 @@
+server:
+  port: 9409
+---
+spring:
+  application:
+    name: sleuth-zipkin-consumer-stream
+  #zipkin:
+  #指定zipkin的地址
+    #base-url: http://localhost:9411
+  sleuth:
+    sampler:
+    #指定需采样的请求百分比,默认是0.1,即10%,这是因为在分布式系统中,数据量大，所以采样很有必要
+      percentage: 1.0
+---
+logging: 
+  level:
+    root: INFO
+      org.springframe.cloud.sleuth:DEBUG
+---
+eureka:
+  client:
+    register-with-eureka: true  #是否将自己注册到Eureka Server，
+    fetch-registry: true
+    service-url: 
+     defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka  
+---
+spring:
+   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springcloud?serverTimezone=UTC&useSSL=true
+    username: root
+    password: 123456
+   jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+---
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    

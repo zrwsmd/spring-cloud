@@ -1,0 +1,13 @@
+server:
+  port: 9411
+spring:
+  rabbitmq:
+    host: localhost
+    #rabbitmq客户端默认的端口
+    port: 5672
+    username: guest
+    password: guest
+---
+spring:
+  application:
+    name: spring-cloud-zipkin-server9411-stream

@@ -1,0 +1,6 @@
+1.启动eureka,和一个提供者8000，
+2.启动springcloud-consumer5672-RabbitMQ消费者
+3.然后启动该项目，这个项目只是整合RabbmitMQ监控数据，没有其他作用
+4.http://localhost:10000/loadbalance/1，其中10000是springcloud-consumer5672-RabbitMQ项目tomcat的默认端口
+5.说到底该项目是将turbine的监控功能转移到了RabbitMQ上了，本质和springcloud-turbine-8031这个项目一样
+6.访问http://localhost:15672(RabbitMQ界面)/查看效果

@@ -1,0 +1,19 @@
+一.zipkin涉及几个概念
+zipkin是twitter开源的分布式跟踪系统,跟踪分布式服务之间的应用数据链路(请求的多个服务之间的执行顺序，即从哪个服务到哪个服务再到哪个服务)
+Span:基本工作单元，一次链路调用(可以是RPC，DB等没有特定的限制)创建一个span，通过一个64位ID标识它， 
+span通过还有其他的数据，例如描述信息，时间戳，key-value对的(Annotation)tag信息，parent-id等,其中parent-id 
+可以表示span调用链路来源，通俗的理解span就是一次请求信息
+
+Trace:类似于树结构的Span集合，表示一条调用链路，存在唯一标识
+
+Annotation: 注解,用来记录请求特定事件相关信息(例如时间)，通常包含四个注解信息
+
+BinaryAnnotation:提供一些额外信息，一般已key-value对出现
+二.启动界面各个参数的意义
+1.Service Name(服务名):表示微服务名称，也就是微服务spring.application.name的名称
+2.span(跨度名),all表示所有span,也可以指定span
+3.Duration (μs),表示span从创建到关闭所用的时间
+4.Limit，表示查询几条数据，类似于mysql的limit关键字
+5.Annotations Query:用于自定义查询
+三.访问地址
+http://localhost:9411/

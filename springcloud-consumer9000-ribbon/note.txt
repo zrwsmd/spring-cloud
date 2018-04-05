@@ -1,0 +1,13 @@
+1.required a bean of type 'com.netflix.discovery.DiscoveryClient' that could not be found.
+  我导入了com.netflix.discovery.DiscoveryClient;
+  正确的应该是 import org.springframework.cloud.client.discovery.DiscoveryClient;
+2.Field autoServiceRegistration in org.springframework.cloud.client.serviceregistry.AutoServiceRegistrationAutoConfiguration required a single bean, but 2 were found:
+默认只能有一个配置文件
+3.LoadController类实现了ribbon(客户端负载均衡)负载均衡
+4.这个项目是通过使用RestTemplate(负载均衡通过整合Ribbon实现)调用Restful API的
+5.spring-cloud-starter-eureka依赖已经包含了spring-cloud-starter-ribbon，所以
+ 无需引入spring-cloud-starter-ribbon依赖，在启动类加@LoadBalanced代表负载均衡
+ 6.LoadController这个类中第58行代码的http://provider/代表虚拟主机名，当Ribbon和Eureka配合使用
+ 的时候，会自动将虚拟主机名转换为对应的网络地址，这个Provider主机名对应的有2个提供者8000和8001
+ (在他俩的application.yml文件中有application:
+    name: provider)

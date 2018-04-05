@@ -1,0 +1,1 @@
+http://eureka1:8761/eureka/apps可以查看Eureka的metadata(元数据)

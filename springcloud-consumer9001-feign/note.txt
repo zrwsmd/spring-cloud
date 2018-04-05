@@ -1,0 +1,6 @@
+1.Feign是spring cloud中服务消费端的调用框架，由于遗留原因，整个系统并不是spring cloud项目，甚至不是
+spring项目，而使用者关注的重点仅仅是简化http调用代码的编写。如果采用httpclient或者okhttp这样相对较重的
+框架，对初学者来说编码量与学习曲线都会是一个挑战，而使用spring中RestTemplate，又没有配置化的解决方案，
+由此想到是否可以脱离spring cloud，独立使用Feign。在spring cloud中使用feign只需要创建一个接口，并且
+添加一些注解，就可以了
+

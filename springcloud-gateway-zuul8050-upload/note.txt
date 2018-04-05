@@ -1,0 +1,6 @@
+1.直接上传命令:curl -F "file=@E:\MyDownloads\zrw.txt" localhost:8050/upload
+curl -F "file=@E:\xunlei\jboss-6.0.0.Final" localhost:8050/upload
+
+2.通过zuul上传小文件:curl -v -H "Transfer-Encoding: chunked" -F "file=@E:\MyDownloads\zrw.txt" localhost:8050/springcloud-gateway-zuul8050-upload/upload
+
+//curl -v -H "Transfer-Encoding: chunked" -F "file=@E:\xunlei\jboss-6.0.0.Final" localhost:8050/zuul/springcloud-gateway-zuul8050-upload/upload

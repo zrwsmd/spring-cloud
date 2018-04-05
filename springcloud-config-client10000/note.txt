@@ -1,0 +1,4 @@
+一.访问http://localhost:10000/profile得到dev-1.0，
+说明Config client能够通过Config server获得Git仓库对应的环境配置
+2.如果将bootstrap.yml文件中的 profile: dev改为profile:test(production同理)
+那么会打印test-1.0

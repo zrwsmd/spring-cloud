@@ -1,0 +1,24 @@
+server:
+  port: 9411
+---
+zipkin: 
+  storage:
+   type: elasticsearch
+   elasticsearch: 
+    cluster: elasticsearch
+    host: http://localhost:9200/
+    index: zipkin
+    index-shards: 5
+    index-replicas: 1
+---
+spring:
+  rabbitmq:
+    host: localhost
+    #rabbitmq客户端默认的端口
+    port: 5672
+    username: guest
+    password: guest
+---
+spring:
+  application:
+    name: spring-cloud-zipkin-server9411-stream-elasticsearch

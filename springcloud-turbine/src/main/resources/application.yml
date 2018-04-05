@@ -1,0 +1,17 @@
+server:
+  port: 8031
+spring:
+  
+   application:
+    name: hybtrix-turbine
+eureka:
+  client:
+    service-url:
+     defaultZone: http://eureka1:8761/eureka,http://eureka2:8762/eureka
+  instance:
+    prefer-ip-address: true #表示将微服务自己的ip注册到注册中心(Eureka Server)上，不配置表示将hostname注册到上面去
+turbine:
+
+  app-config: consumer9002,provider
+  cluster-name-expression: "' default'"
+

@@ -1,0 +1,12 @@
+
+                                
+1.ERROR: cannot load service names: Request processing failed; nested exception is java.io.UncheckedIOException: java.net.ConnectException: Failed to connect to localhost/0:0:0:0:0:0:0:1:9200
+解决:首先启动elasticsearch
+2.启动spring-cloud-zipkin-server9411-stream-elasticsearch(本项目)，再启动
+spring-cloud-provider-sleuth-zipkin-trace9410-stream项目和spring-cloud-consumer-sleuth-zipkin-trace9409-stream，
+然后访问http://localhost:9411/正常，
+再访多次问http://localhost:9410/1产生数据，在http://localhost:15672的Queues中可以看到折线图在此时飙升，
+再访问http://localhost:9200/_search可以看到历史数据，形如以下形式
+{"took":3,"timed_out":false,"_shards":{"total":5,"successful":5,"skipped":0,
+"failed":0},"hits":{"total":4,"max_score":1.0,
+"hits":[{"_index":"zipkin:span-2018-04-03","_type":"span","_id":"JfR0imIBuZLxyHKAPAeZ","_score":1.0,"_source":{"traceId":"59521fc38d18a0e6","duration":16504,"localEndpoint":{"serviceName":"sleuth-zipkin-provider-stream","ipv4":"192.168.228.1","port":9410},"timestamp_millis":1522741295681,"kind":"SERVER","name":"http:/1","id":"59521fc38d18a0e6","timestamp":1522741295681000

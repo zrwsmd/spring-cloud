@@ -1,0 +1,3 @@
+首先启动该项目，再启动springcloud-hystrixdashboard-8030项目(如何启动见那个项目的note.txt)，
+输入在URL中输入localhost:8031/turbine.stream，Title随便起，点击Monitor stream按钮即可测试
+不过目前测试失败

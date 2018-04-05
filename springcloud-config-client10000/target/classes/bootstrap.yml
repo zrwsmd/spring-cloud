@@ -1,0 +1,12 @@
+spring:
+  application:
+  #对应Config server所获取的配置文件中的{application}，
+  #也就是Config servere的http://localhost:9999/spring-cloud-zrw中的
+    name: spring-cloud-zrw
+  cloud:
+    config:
+      uri: http://localhost:9999
+      #profile对应config server所获取的配置文件中的{profile}
+      profile: production
+      #label指定Git仓库的分支，默认是master
+      label: master

@@ -1,0 +1,6 @@
+
+                                演示使用消息中间件收集数据
+1.由spring-cloud-zipkin-server9411复制而来
+2.这个项目是和spring-cloud-provider-sleuth-zipkin-trace9410-stream一起启动的，
+首先启动这个项目，再启动那个，然后在http://localhost:15672(rabbitmq默认服务器端端口)可以看到连接，
+访问http://localhost:9410/1,rabbirmq的Queues界面会看到变化的折线图

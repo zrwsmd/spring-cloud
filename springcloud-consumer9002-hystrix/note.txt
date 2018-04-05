@@ -1,0 +1,32 @@
+1.导入hystrix的依赖，同时启动类加上 @EnableHystrix或者@EnableCircuitBreaker
+在controller对应的方法上加@HystrixCommand(fallbackMethod = "findByIdFallBack")
+然后创建对应的方法findByIdFallBack，参数和返回值与要调用的方法一致,否则会报错fallback method wasn't found: findByIdFallBack
+2.执行回退并不代表hystrix(断路器)已经打开，请求失败，超时，被拒绝以及hystrix打开
+都会执行回退操作
+3.Hystrix的隔离策略有2种，分别是THREAD(线程隔离)和SEMAPHORE(信号量隔离)，默认是THREAD(线程隔离)
+如果发生找不到上下文的运行时异常，考虑改为SEMAPHORE(信号量隔离)，即修改为
+ @HystrixCommand(fallbackMethod = "findByIdFallBack(可以随意起)",
+			 commandProperties={
+					 @HystrixProperty(name="execution.isolation.strategy",value="SEMAPHORE")
+			 }
+			 )
+4.localhost:9002/hystrix.stream可以查看hystrix的实时监控数据，比如HystrixCommand的名称，
+group名称，断路器名称，错误率，错误数等
+5.为了更直观看出监控状态，可以使用Hystrix Dashboard可视化监控数据，首先创建一个mavne项目，然后引入
+1)<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-hystrix-dashboard -->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+    <version>1.4.3.RELEASE</version>
+</dependency>
+2)同时在启动类上添加@EnableHystrixDashboard
+3)在配置文件中(application.yml)加入
+server:
+   port:端口号(比如8030)
+4)输入localhost:8030/hystrix,可以看到Hystrix Dashboard的首页
+5)再次输入localhost:9002/hystrix.stream，随意设置一个Title,并且点击Monitor Stream按钮
+6)但是Hystrix Dashboard只能查看单个数据的监控实例，所以使用Turbine聚合监控数据(监控多个微服务)，见Turbine项目，
+当然如果微服务与Turbine网络不通，可以使用消息中间件实现数据收集，常用的消息中间件是RabbitMQ,微服务将数据发送到消息中间件，
+Turbine消费消息中间件的数据，见消息中间件项目springcloud-consumer5672-RabbitMQ
+
+			 

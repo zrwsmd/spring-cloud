@@ -1,0 +1,43 @@
+#server:
+  #port: 8761
+#eureka:
+  #client:
+    #register-with-eureka: false  #是否将自己注册到Eureka Server，当前就是Eureka Server，所以为false
+    #fetch-registry: false   #是否从Eureka Server获取注册信息
+    #service-url:
+     #defaultZone: http://eureka1:8761/eureka/  #设置与Eureka Server交互的地址,默认是这个地址
+ 
+spring:
+  application:
+    name: springcloud-eureka
+  profiles:
+    active:
+    - eureka1
+---
+server:
+  port: 8762
+spring:  
+  profiles: eureka2                                 # 指定profile=peer1  
+eureka:  
+  instance:  
+    hostname: eureka2                               # 指定当profile=peer1时，主机名  
+  client:
+    register-with-eureka: false  #是否将自己注册到Eureka Server，当前就是Eureka Server，所以为false
+    fetch-registry: false   
+    serviceUrl:  
+      defaultZone: http://eureka1:8761/   
+    
+---
+server:
+  port: 8761
+spring:  
+  profiles: eureka1                                 # 指定profile=peer1  
+eureka:  
+  instance:  
+    hostname: eureka1                               # 指定当profile=peer1时，主机名  
+  client:
+   register-with-eureka: false  #是否将自己注册到Eureka Server，当前就是Eureka Server，所以为false
+   fetch-registry: false  
+   serviceUrl:  
+      defaultZone: http://eureka2:8762/   
+     

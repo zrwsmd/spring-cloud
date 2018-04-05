@@ -1,0 +1,3 @@
+1.本项目是微服务(provider)整合Zipkin,不光provider可以整合sleuth,consumer也可以，类似次项目，所以就不整合一个consumer项目了
+2.这个项目是仿照8001项目的雏形
+3.启动spring-cloud-zipkin-server9411,再启动本项目

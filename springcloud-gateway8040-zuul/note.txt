@@ -1,0 +1,31 @@
+一。测试路由规则
+1.启动eureka和一个8000提供者
+2.启动一个ribbon的消费者项目，本实例使用springcloud-consumer9000-ribbon这个项目
+3.启动本项目
+4.访问http://localhost:8040/consumer9000/loadbalance/1(这个项目controller里面写的路径)，请求会被转发到
+http://localhost:9000/user/1.注意此处的consumer9000是springcloud-consumer9000-ribbon这个项目
+的application:(在application.yml中的配置)
+    name: consumer9000 
+5.访问http://localhost:8040/providerunsafe/unsafe/1，会被转发到http://localhost:8002/unsafe/1,对应
+controller的60-63行代码，
+6.访问http://localhost:8040/zrw/1,相当于访问http://localhost:8000/1，注意此处！！
+因为8000是需要授权的，所以需要在配置文件中添加如下代码
+zuul:
+  routes:
+    application:
+      path: /zrw/**
+      serviceId: provider
+      sensitive-headers: Cookie,Set-Cookie
+代表路由的地址
+6.根据第四点和第五点和第六点,说明zuul会代理所有注册到Eureka Server的微服务，并且Zuul的路由规则如下:
+http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka Server上的
+application:(在application.yml中的配置)
+    name:***
+二。测试负载均衡
+三。Hystrix容错与监控
+四.Zuul的路由端点
+访问http://localhost:8040/routes，如果报错401，则在application.yml文件中添加
+management:
+  security:
+    enabled: false
+五.获取Zuul的过滤器：http://localhost:8040/filters

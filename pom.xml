@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.springcloud</groupId>
+	<artifactId>springcloud-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.7.RELEASE</version>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-boot-starter-web.version>1.5.7.RELEASE</spring-boot-starter-web.version>
+		<spring-boot-starter-test.version>1.5.7.RELEASE</spring-boot-starter-test.version>
+		<spring-boot-starter-data-jpa.version>1.5.7.RELEASE</spring-boot-starter-data-jpa.version>
+		<spring-boot-maven-plugin.version>1.5.7.RELEASE</spring-boot-maven-plugin.version>
+		<spring-boot-starter-actuator.version>1.5.7.RELEASE</spring-boot-starter-actuator.version>
+		<mysql.version>6.0.6</mysql.version>
+		<devtool.version>1.5.7.RELEASE</devtool.version>
+		<spring-boot-starter-security.version>1.5.7.RELEASE</spring-boot-starter-security.version>
+		<spring-cloud-starter-eureka-server.version>1.4.3.RELEASE</spring-cloud-starter-eureka-server.version>
+		<spring-cloud-starter-eureka.version>1.4.3.RELEASE</spring-cloud-starter-eureka.version>
+		<spring-cloud-starter-feign.version>1.4.3.RELEASE</spring-cloud-starter-feign.version>
+	    <spring-cloud-starter-hystrix.version>1.4.3.RELEASE</spring-cloud-starter-hystrix.version>
+	    <spring-cloud-starter-turbine.version>1.4.3.RELEASE</spring-cloud-starter-turbine.version>
+	    <spring-cloud-starter-hystrix-dashboard.version>1.4.3.RELEASE</spring-cloud-starter-hystrix-dashboard.version>
+	</properties>
+	<modules>
+		<module>springcloud-provider8000</module>
+		<module>springcloud-consumer9000</module>
+		<module>springcloud-eureka</module>
+		<module>springcloud-turbine</module>
+    <module>springcloud-config-server</module>
+    <module>spring-cloud-zipkin-server</module>
+    <module>spring-cloud-provider-sleuth-trace</module>
+  </modules>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<version>${devtool.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot-starter-web.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring-boot-starter-test.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>${spring-boot-starter-data-jpa.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot-maven-plugin.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>${spring-boot-starter-security.version}</version>
+			</dependency>
+
+			<!-- 注册中心依赖 -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-eureka-server</artifactId>
+				<version>${spring-cloud-starter-eureka-server.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-eureka</artifactId>
+				<version>${spring-cloud-starter-eureka.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-consul-discovery</artifactId>
+				<version>1.3.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-feign</artifactId>
+				<version>${spring-cloud-starter-feign.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-hystrix -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-hystrix</artifactId>
+				<version>${spring-cloud-starter-hystrix.version}</version>
+			</dependency>
+			<!-- hystrix-dashboard监控数据 -->
+			<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
+			<version>${spring-cloud-starter-hystrix-dashboard.version}</version>
+		</dependency>
+			<!-- 使用Turbine聚合监控数据(监控多个微服务 -->
+            <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-turbine</artifactId>
+			<version>${spring-cloud-starter-turbine.version}</version>
+		</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

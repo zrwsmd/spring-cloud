@@ -1,0 +1,3 @@
+1.演示zuul的回退机制
+2.不要启动8002微服务(hostname为providerunsafe)通过zuul访问http://localhost:8040/providerunsafe/unsafe/1,
+显示自定义的那句话"用户微服务不可以,请稍后重试"
